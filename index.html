@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一幸 | 広島のコンテナ作業・施設管理の専門会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a2342;
+    --blue: #1a5276;
+    --teal: #148f77;
+    --light-teal: #1abc9c;
+    --sky: #d6eaf8;
+    --white: #ffffff;
+    --gray: #f4f6f8;
+    --text: #1a1a2e;
+    --text-light: #555;
+    --border: #d0e8f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 35, 66, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-logo span { color: var(--light-teal); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--light-teal); }
+
+  .nav-cta {
+    background: var(--light-teal);
+    color: var(--white) !important;
+    padding: 0.4rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500 !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1a7a6e 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 700px;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(26, 188, 156, 0.2);
+    border: 1px solid var(--light-teal);
+    color: var(--light-teal);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--light-teal);
+    border-bottom: 2px solid var(--light-teal);
+  }
+
+  .hero p {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 540px;
+    line-height: 2;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--light-teal);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(26,188,156,0.4);
+  }
+
+  .btn-primary:hover {
+    background: #17a589;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,188,156,0.5);
+  }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 5%; bottom: 80px;
+    display: flex; gap: 2rem;
+    animation: fadeInUp 0.8s 0.3s ease both;
+  }
+
+  .stat {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2rem;
+    color: var(--light-teal);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .stat-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+
+  .section-label {
+    display: inline-block;
+    color: var(--teal);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .section-desc {
+    color: var(--text-light);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 2;
+  }
+
+  /* APPEAL */
+  .appeal {
+    background: var(--gray);
+    border-top: 4px solid var(--teal);
+  }
+
+  .appeal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .appeal-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    border-left: 4px solid var(--teal);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .appeal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .appeal-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .appeal-card h3 {
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .appeal-card p {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 8px 32px rgba(26, 82, 118, 0.12);
+  }
+
+  .service-header {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 2rem;
+    color: var(--white);
+  }
+
+  .service-header .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-header h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-header p {
+    font-size: 0.82rem;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .service-body { padding: 1.8rem; }
+
+  .service-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .service-list li::before {
+    content: '✓';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .price-tag {
+    background: var(--sky);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .price-tag .price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .price-tag .price-note {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 0.2rem;
+  }
+
+  /* AREA */
+  .area { background: var(--navy); color: var(--white); }
+
+  .area .section-title { color: var(--white); }
+  .area .section-desc { color: rgba(255,255,255,0.7); }
+  .area .section-label { color: var(--light-teal); }
+
+  .area-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .area-item {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .area-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--light-teal);
+    flex-shrink: 0;
+  }
+
+  .area-item span {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* RESULTS */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .result-card {
+    background: var(--gray);
+    border-radius: 12px;
+    padding: 1.8rem;
+    border-top: 3px solid var(--teal);
+  }
+
+  .result-tag {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 0.72rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .result-card h4 {
+    color: var(--navy);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-card p {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--gray); }
+
+  .contact-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  }
+
+  .contact-wrapper .section-title { text-align: center; margin-bottom: 0.5rem; }
+  .contact-wrapper .section-desc { text-align: center; margin: 0 auto 2rem; }
+
+  .form-group { margin-bottom: 1.4rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+
+  .required {
+    color: #e74c3c;
+    font-size: 0.72rem;
+    margin-left: 0.3rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: border-color 0.2s;
+    background: var(--white);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(20, 143, 119, 0.1);
+  }
+
+  .form-group textarea { height: 130px; resize: vertical; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--teal), var(--light-teal));
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 15px rgba(20,143,119,0.3);
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(20,143,119,0.4);
+  }
+
+  .contact-tel {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-tel p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .tel-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+  }
+
+  .tel-hours {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 0.3rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 5% 2rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand .nav-logo {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+    line-height: 1.9;
+  }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--light-teal); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.78rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-stats { position: static; margin-top: 2rem; flex-wrap: wrap; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-wrapper { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">一<span>幸</span></div>
+  <ul class="nav-links">
+    <li><a href="#appeal">選ばれる理由</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#area">対応エリア</a></li>
+    <li><a href="#results">実績</a></li>
+    <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">広島のコンテナ作業・施設管理の専門会社</div>
+    <h1>
+      重い・難しい・急ぎの<br>
+      現場仕事は<br>
+      <em>一幸</em>にお任せください
+    </h1>
+    <p>
+      コンテナの手積み・手下ろしから施設の維持管理まで。<br>
+      広島港エリアを中心に、人手が必要な現場へ迅速に対応します。
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">無料でお問い合わせ</a>
+      <a href="#services" class="btn-outline">サービスを見る</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">即日</div>
+      <div class="stat-label">対応可能</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">受付対応</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">広島</div>
+      <div class="stat-label">港湾エリア</div>
+    </div>
+  </div>
+</section>
+
+<!-- APPEAL -->
+<section class="appeal" id="appeal">
+  <div class="fade-in">
+    <span class="section-label">Why Choose Us</span>
+    <h2 class="section-title">一幸が選ばれる4つの理由</h2>
+    <p class="section-desc">重労働・急ぎ・難しい現場こそ、私たちの出番です。</p>
+  </div>
+  <div class="appeal-grid fade-in">
+    <div class="appeal-card">
+      <div class="appeal-icon">🚢</div>
+      <h3>コンテナ作業に特化した経験</h3>
+      <p>20ft・40ftコンテナの手積み・手下ろし作業を専門的に対応。肥料・飲料など重量物の経験も豊富です。</p>
+    </div>
+    <div class="appeal-card">
+      <div class="appeal-icon">⚡</div>
+      <h3>迅速な人員手配</h3>
+      <p>急な人手不足にも柔軟に対応。広島港エリアを中心に、必要な人数を必要なタイミングで手配します。</p>
+    </div>
+    <div class="appeal-card">
+      <div class="appeal-icon">🤝</div>
+      <h3>多様な現場に対応</h3>
+      <p>港湾荷役から施設維持管理まで幅広く対応。一つの窓口で複数のニーズにお応えします。</p>
+    </div>
+    <div class="appeal-card">
+      <div class="appeal-icon">📋</div>
+      <h3>丁寧な作業報告</h3>
+      <p>作業後は必ず報告書を提出。品質・安全を重視した現場管理で、安心してお任せいただけます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-in">
+    <span class="section-label">Services</span>
+    <h2 class="section-title">サービス内容・料金目安</h2>
+    <p class="section-desc">現場の状況に応じて柔軟にご提案します。まずはお気軽にご相談ください。</p>
+  </div>
+  <div class="services-grid fade-in">
+
+    <div class="service-card">
+      <div class="service-header">
+        <div class="icon">📦</div>
+        <h3>コンテナ作業</h3>
+        <p>デバンニング・バンニング・手積み・手下ろし</p>
+      </div>
+      <div class="service-body">
+        <ul class="service-list">
+          <li>20ft・40ftコンテナ対応</li>
+          <li>肥料・飲料など重量物対応</li>
+          <li>倉庫内作業・ヤード作業</li>
+          <li>パレタイズ・荷揃え作業</li>
+          <li>複数本の連続作業も対応</li>
+        </ul>
+        <div class="price-tag">
+          <div class="price">1人あたり 15,000円〜／日</div>
+          <div class="price-note">※ 作業内容・人数・時間により変動します</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-header">
+        <div class="icon">🏗️</div>
+        <h3>港湾・荷役作業</h3>
+        <p>港湾荷役全般の作業員手配</p>
+      </div>
+      <div class="service-body">
+        <ul class="service-list">
+          <li>船内荷役補助作業</li>
+          <li>岸壁・上屋作業</li>
+          <li>フォークリフト補助</li>
+          <li>検数・検品補助</li>
+          <li>スポット・定期いずれも対応</li>
+        </ul>
+        <div class="price-tag">
+          <div class="price">お見積もりによる</div>
+          <div class="price-note">※ 作業内容・規模によりご提案します</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-header">
+        <div class="icon">🌿</div>
+        <h3>施設維持管理</h3>
+        <p>ホテル・公共施設の総合管理</p>
+      </div>
+      <div class="service-body">
+        <ul class="service-list">
+          <li>樹木・危険木の点検・報告</li>
+          <li>芝生・庭園管理</li>
+          <li>草刈り・除草作業</li>
+          <li>施設敷地内の維持管理全般</li>
+          <li>年間契約・スポット対応</li>
+        </ul>
+        <div class="price-tag">
+          <div class="price">年間契約・月額対応可</div>
+          <div class="price-note">※ 施設規模・作業範囲によりご提案します</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="area" id="area">
+  <div class="fade-in">
+    <span class="section-label">Service Area</span>
+    <h2 class="section-title">対応エリア</h2>
+    <p class="section-desc">広島港・宇品エリアを中心に、広島県内全域に対応しています。エリア外もお気軽にご相談ください。</p>
+  </div>
+  <div class="area-grid fade-in">
+    <div class="area-item"><div class="area-dot"></div><span>広島市南区（宇品・出島）</span></div>
+    <div class="area-item"><div class="area-dot"></div><span>広島市内全域</span></div>
+    <div class="area-item"><div class="area-dot"></div><span>安芸郡（海田・府中・熊野）</span></div>
+    <div class="area-item"><div class="area-dot"></div><span>廿日市市・大竹市</span></div>
+    <div class="area-item"><div class="area-dot"></div><span>東広島市・呉市</span></div>
+    <div class="area-item"><div class="area-dot"></div><span>広島県内その他エリア</span></div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="fade-in">
+    <span class="section-label">Track Record</span>
+    <h2 class="section-title">実績・対応事例</h2>
+    <p class="section-desc">これまでに対応してきた主な作業事例をご紹介します。</p>
+  </div>
+  <div class="results-grid fade-in">
+    <div class="result-card">
+      <div class="result-tag">コンテナ作業</div>
+      <h4>肥料コンテナのデバンニング作業</h4>
+      <p>20ftコンテナ複数本の手積み・手下ろし作業。重量物の取り扱い経験が豊富なスタッフが迅速に対応しました。</p>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">コンテナ作業</div>
+      <h4>飲料コンテナのバンニング作業</h4>
+      <p>40ftコンテナへの飲料積み込み作業。丁寧な荷扱いで破損ゼロを実現しています。</p>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">施設管理</div>
+      <h4>リゾートホテルの危険木点検・報告</h4>
+      <p>広島県内リゾートホテルの敷地内樹木を定期的に点検。危険木の早期発見・報告で安全管理をサポート。</p>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">港湾荷役</div>
+      <h4>港湾荷役の作業員スポット手配</h4>
+      <p>広島港内での荷役作業員の緊急手配に対応。繁忙期の急な人手不足を即日解消しました。</p>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">検査補助</div>
+      <h4>非破壊検査の補助作業</h4>
+      <p>全国各地への出張対応も含む非破壊検査の補助業務。安全意識の高いスタッフが丁寧に対応しています。</p>
+    </div>
+    <div class="result-card">
+      <div class="result-tag">物流補助</div>
+      <h4>新聞ロール巻き上げ作業</h4>
+      <p>定期的な新聞紙ロールの巻き上げ作業を継続受注。安定したチームで品質を維持しています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrapper fade-in">
+    <span class="section-label" style="display:block;text-align:center;">Contact</span>
+    <h2 class="section-title">お問い合わせ</h2>
+    <p class="section-desc">作業内容・エリア・料金など、まずはお気軽にご相談ください。通常1営業日以内にご返答します。</p>
+
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>会社名<span class="required">※必須</span></label>
+          <input type="text" placeholder="株式会社〇〇" required>
+        </div>
+        <div class="form-group">
+          <label>お名前<span class="required">※必須</span></label>
+          <input type="text" placeholder="山田 太郎" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>電話番号<span class="required">※必須</span></label>
+          <input type="tel" placeholder="082-XXX-XXXX" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <input type="email" placeholder="example@company.co.jp">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>お問い合わせ内容<span class="required">※必須</span></label>
+        <select required>
+          <option value="">選択してください</option>
+          <option>コンテナ作業（デバン・バンニング）について</option>
+          <option>港湾荷役の作業員手配について</option>
+          <option>施設維持管理について</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>詳細・ご要望</label>
+        <textarea placeholder="作業内容・希望日・作業場所・人数など、詳しくお書きください。"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">送信する →</button>
+    </form>
+
+    <div class="contact-tel">
+      <p>お急ぎの方はお電話でもどうぞ</p>
+      <div class="tel-num">082-XXX-XXXX</div>
+      <div class="tel-hours">受付時間：平日 8:00〜18:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo">一<span>幸</span></span>
+      <p>
+        広島市南区宇品海岸<br>
+        TEL: 082-XXX-XXXX<br>
+        営業時間: 平日 8:00〜18:00
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>サービス</h4>
+      <ul>
+        <li><a href="#services">コンテナ作業</a></li>
+        <li><a href="#services">港湾・荷役作業</a></li>
+        <li><a href="#services">施設維持管理</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>会社情報</h4>
+      <ul>
+        <li><a href="#appeal">選ばれる理由</a></li>
+        <li><a href="#area">対応エリア</a></li>
+        <li><a href="#results">実績・事例</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 一幸 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = '送信しました！折り返しご連絡します';
+    btn.style.background = '#148f77';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
